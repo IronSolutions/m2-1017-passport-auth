@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<h2>HOME</h2>
+
+<% if(!user){ %>
+  <ul>
+    <li><a href="/auth/google">Login con GOOGLE</a></li>
+    <li><a href="/auth/login">Login</a></li>
+    <li><a href="/auth/signup">signup</a></li>
+  </ul>
+<% }else{ %>
+  <% if(user.role == "teacher"){ %>
+    <a href="/private-teacher">PAGINA PRIVADA DE LOS PROFESORES</a>
+  <% }else{ %>
+    <a href="/private-normal">PAGINA PRIVADA NORMAL</a>
+  <% } %>
+
+  <a href="/auth/logout">Logout <%= user.username %></a>
+<% } %>
